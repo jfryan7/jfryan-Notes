@@ -9,22 +9,22 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 public class ViewArchived extends Activity {
-/*
+//
 	private ArrayList<Todo> archivedTodos;
 	private ArrayAdapter<Todo> todoViewAdapter;
-	private TodoList currentlist = new TodoList();
-	private ListView oldTodosList;
-*/
+	private TodoList archivedlist = new TodoList();
+	private ListView archivedTodosList;
+//
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.archived);
-/*		
-		oldTodosList = (ListView) findViewById(R.id.ToDoListView);  
-        archivedTodos = (ArrayList<Todo>) currentlist.getTodos();
+//	
+		archivedTodosList = (ListView) findViewById(R.id.ToDoListView);  
+        archivedTodos = (ArrayList<Todo>) archivedlist.getTodos();
         todoViewAdapter = new ArrayAdapter<Todo>(this, android.R.layout.simple_list_item_1, archivedTodos);
-		oldTodosList.setAdapter(todoViewAdapter);
-*/		
+		archivedTodosList.setAdapter(todoViewAdapter);
+//		
 	}
 
 	@Override
