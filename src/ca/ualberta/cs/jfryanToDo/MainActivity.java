@@ -36,25 +36,21 @@ import android.widget.Toast;
 
 public class MainActivity extends Activity {
 	
-	//*** FROM HERE need to go through and possibly rename or factor some things
-	
 	private EditText todoText;
+	private ArrayList<Todo> todos;
 	private ArrayAdapter<Todo> todoViewAdapter;
 	private TodoList currentlist = new TodoList();
 	private ListView oldTodosList;
-	private ArrayList<Todo> oldTodos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_todos);
         oldTodosList = (ListView) findViewById(R.id.ToDoListView);  
-        oldTodos = (ArrayList<Todo>) currentlist.getTodos();
-        todoViewAdapter = new ArrayAdapter<Todo>(this, android.R.layout.simple_list_item_1, oldTodos);
+        todos = (ArrayList<Todo>) currentlist.getTodos();
+        todoViewAdapter = new ArrayAdapter<Todo>(this, android.R.layout.simple_list_item_1, todos);
 		oldTodosList.setAdapter(todoViewAdapter);
     }
-
-    //************ TO HERE
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -74,28 +70,28 @@ public class MainActivity extends Activity {
         }
         return super.onOptionsItemSelected(item);
     }
-    
-    public void viewArchived (MenuItem menu){
-    	Toast.makeText(this, "View Archived", Toast.LENGTH_SHORT).show();  
-    	Intent intent = new Intent(MainActivity.this, ViewArchived.class);
-    	startActivity(intent);
-    }
+
     
 	public void save(View view) {
  
 		todoText = (EditText) findViewById(R.id.AddEditText);
 		String text = todoText.getText().toString();
 		if(!text.isEmpty() && text.trim().length() > 0){
-			Todo todo = new Todo(text);
+			Todo todo = new Todo(text.trim());
 			currentlist.addTodo(todo);
 			todoViewAdapter.notifyDataSetChanged();
 		}
 		todoText.setText("");
-
-		
+	
 //		dataManager.saveTweets(tweets);
 	}    
     
+	public void viewArchived (MenuItem menu){
+    	Toast.makeText(this, "View Archived", Toast.LENGTH_SHORT).show();  
+    	Intent intent = new Intent(MainActivity.this, ViewArchived.class);
+    	startActivity(intent);
+    	
+    }
       
 }
 
