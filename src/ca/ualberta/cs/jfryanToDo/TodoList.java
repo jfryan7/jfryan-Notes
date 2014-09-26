@@ -3,6 +3,12 @@ package ca.ualberta.cs.jfryanToDo;
 import java.util.ArrayList;
 import java.util.Collection;
 
+//Class that is the list/collection of todo items. Currently has two separate ArrayLists
+//for current and archived todos, which each have their own methods that are very similar.
+//Future versions should probably refactor some of this code, reducing the amount of
+//duplicate code, possibly through the use of making two subclasses or implementing some
+//type of list modifier/handler class.
+
 public class TodoList {
 	
 	protected ArrayList<Todo> todoList;
@@ -13,11 +19,12 @@ public class TodoList {
 		archivedTodoList = new ArrayList<Todo>();
 	}
 
-	//Current List
+	//Current List methods
 	
-	public Collection<Todo> getTodos() {
+	public Collection<Todo> getAllTodos() {
 		return todoList;
 	}
+
 
 	public void addTodo(Todo todoItem) {
 		todoList.add(todoItem);
@@ -27,9 +34,9 @@ public class TodoList {
 		todoList.remove(todoItem);
 	}
 
-	//Archived List
+	//Archived List methods
 	
-	public Collection<Todo> getArchivedTodos() {
+	public Collection<Todo> getAllArchivedTodos() {
 		return archivedTodoList;
 	}
 

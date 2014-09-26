@@ -1,5 +1,7 @@
 /*
- *ToDo list: A todo list app, can archive or email todos.
+ *ToDo list: A todo list app, currently can on add todos to a list.
+ *It should eventually be able to delete todos, check them off, add them 
+ *to an archived list and email them, but that doesnt happen right now.
  *
  *Copyright 2014 Jeffrey Ryan, jfryan@ualberta.ca
  *
@@ -47,7 +49,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_todos);
         oldTodosList = (ListView) findViewById(R.id.ToDoListView);  
-        todos = (ArrayList<Todo>) currentlist.getTodos();
+        todos = (ArrayList<Todo>) currentlist.getAllTodos();
         todoViewAdapter = new ArrayAdapter<Todo>(this, android.R.layout.simple_list_item_1, todos);
 		oldTodosList.setAdapter(todoViewAdapter);
     }
@@ -73,20 +75,27 @@ public class MainActivity extends Activity {
 
     
 	public void save(View view) {
+		
+		//Takes text from bar and adds it to the todo list, will not accept empty 
+		//or whitespace before text
  
 		todoText = (EditText) findViewById(R.id.AddEditText);
 		String text = todoText.getText().toString();
 		if(!text.isEmpty() && text.trim().length() > 0){
-			Todo todo = new Todo(text.trim());
+			Todo todo = new Todo("[ ] "+text.trim());
 			currentlist.addTodo(todo);
 			todoViewAdapter.notifyDataSetChanged();
 		}
 		todoText.setText("");
 	
-//		dataManager.saveTweets(tweets);
+//		Need to save to a database/file here.
 	}    
     
+	
 	public void viewArchived (MenuItem menu){
+		
+		//Starts new activity to view the list of archived todos
+		
     	Toast.makeText(this, "View Archived", Toast.LENGTH_SHORT).show();  
     	Intent intent = new Intent(MainActivity.this, ViewArchived.class);
     	startActivity(intent);
@@ -94,7 +103,7 @@ public class MainActivity extends Activity {
     }
       
 }
-
+ 
 
 
 

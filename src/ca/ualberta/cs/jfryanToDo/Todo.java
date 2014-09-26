@@ -1,5 +1,8 @@
 package ca.ualberta.cs.jfryanToDo;
 
+//The todo item, has two boolean values to keep track of if the todo is checked off
+//or is/isnt archived.
+
 public class Todo {
 
 	protected String todoItem;
